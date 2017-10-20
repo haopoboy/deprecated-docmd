@@ -2,4 +2,4 @@
 
 set -e
 
-docker build -t docmd:latest
+docker build -t docmd:latest .
