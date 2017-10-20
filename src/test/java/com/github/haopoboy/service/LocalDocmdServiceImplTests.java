@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
@@ -28,14 +27,14 @@ public class LocalDocmdServiceImplTests {
 	
 	@Before
 	public void rmdir() throws IOException {
-		Path path = Paths.get( properties.getStoragePath() );
+		Path path = properties.getStoragePath();
 		FileUtils.deleteDirectory( path.toFile() );
 	}
 
 	@Test
 	public void save() {
 		// Make sure data doesn't exist.
-		Path path = Paths.get( properties.getStoragePath() );
+		Path path = properties.getStoragePath();
 		assertThat(path)
 			.as("Path[%s] must not exist to make sure auto creation.", path)
 			.doesNotExist()
@@ -55,11 +54,11 @@ public class LocalDocmdServiceImplTests {
 		assertThat(path).exists().isDirectory();
 		
 		// Tutorial
-		Path tutorial = Paths.get(String.format("%s/%s", path.toString(), "Tutorial"));
+		Path tutorial = path.resolve("Tutorial");
 		assertThat(tutorial).isDirectory();
 		
 		// README.md
-		Path readme = Paths.get( String.format("%s/%s", tutorial.toString(), "README.md") );
+		Path readme = tutorial.resolve("README.md");
 		assertThat(readme)
 			.exists()
 			.isRegularFile()

@@ -1,5 +1,8 @@
 package com.github.haopoboy;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
@@ -11,7 +14,7 @@ public class DocmdProperties {
 	public enum StorageType {LOCAL}
 	private static final Logger logger = LoggerFactory.getLogger(DocmdProperties.class);
 	private StorageType storageType = StorageType.LOCAL;
-	private String storagePath = "data";
+	private Path storagePath = Paths.get("data");
 	
 	@PostConstruct
 	void post() {
@@ -26,11 +29,11 @@ public class DocmdProperties {
 		this.storageType = storageType;
 	}
 
-	public String getStoragePath() {
+	public Path getStoragePath() {
 		return storagePath;
 	}
 
-	public void setStoragePath(String storagePath) {
+	public void setStoragePath(Path storagePath) {
 		this.storagePath = storagePath;
 	}
 

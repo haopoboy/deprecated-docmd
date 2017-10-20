@@ -31,7 +31,7 @@ public class LocalDocmdServiceImpl implements DocmdService {
 
 	@PostConstruct
 	void postConstruct() {
-		File dir = Paths.get( properties.getStoragePath() ).toFile();
+		File dir = properties.getStoragePath().toFile();
 		mkdirs(dir);
 	}
 
@@ -46,17 +46,10 @@ public class LocalDocmdServiceImpl implements DocmdService {
 	void writeToYaml(Docmd docmd) {
 		Yaml yaml = Util.createDefaultYaml();
 		String content = yaml.dump(docmd);
-		String path = generatePath( String.format("%s/%s", docmd.getName(), YAML_NAME) );
+		Path path = resolve( docmd.getName() ).resolve(YAML_NAME);
 		writeContent(path, content);
 	}
 	
-	void writeToYaml(String name, Map<String, Object> map) {
-		Yaml yaml = new Yaml();
-		String content = yaml.dump(map);
-		String path = generatePath( String.format("%s/%s", name, YAML_NAME) );
-		writeContent(path, content);
-	}
-
 	void writeContent(String path, String content) {
 		writeContent( Paths.get(path), content );
 	}
@@ -70,15 +63,12 @@ public class LocalDocmdServiceImpl implements DocmdService {
 	}
 
 	void writeContent(Docmd docmd, MdContent md) {
-		String stringPath = generatePath( docmd.getName() );
-		Path path = Paths.get( String.format("%s/%s.md", stringPath, md.getName()) );
+		Path path = resolve( docmd.getName() ).resolve( md.getName() + ".md" );
 		writeContent( path, md.getContent() );
 	}
 
 	void createRootIfNotExists(Docmd docmd) {
-		String stringPath = generatePath( docmd.getName() );
-		Path root = Paths.get(stringPath);
-		File rootDir = root.toFile();
+		File rootDir = resolve( docmd.getName() ).toFile();
 		mkdirs(rootDir);
 	}
 
@@ -88,7 +78,7 @@ public class LocalDocmdServiceImpl implements DocmdService {
 		}
 	}
 
-	String generatePath(String name) {
-		return String.format("%s/%s", properties.getStoragePath(), name);
+	Path resolve(String name) {
+		return properties.getStoragePath().resolve(name);
 	}
 }
