@@ -12,6 +12,17 @@ cache:
   directories:
   - .autoconf
   - $HOME/.m2
+  - $HOME/google-cloud-sdk
+  
+services:
+  - docker
       
 script:
-  - mvn clean package sonar:sonar  
+  - mvn clean package sonar:sonar
+  
+deploy:
+  - provider: script
+    script: chmod +x gcloud/deploy.sh && gcloud/deploy.sh
+    skip_cleanup: true
+    on:
+      branch: master
