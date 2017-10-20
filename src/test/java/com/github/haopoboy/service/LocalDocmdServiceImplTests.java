@@ -2,15 +2,12 @@ package com.github.haopoboy.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,23 +36,35 @@ public class LocalDocmdServiceImplTests {
 	public void save() {
 		// Make sure data doesn't exist.
 		Path path = Paths.get( properties.getStoragePath() );
-		assertThat( path.toFile().exists() )
-			.as("%s must not exist to make sure auto creation.", path)
-			.isFalse();
+		assertThat(path)
+			.as("Path[%s] must not exist to make sure auto creation.", path)
+			.doesNotExist()
+			;
 		
 		Docmd docmd = new Docmd();
-		docmd.setName("Tutoral");
-		
+		docmd.setName("Tutorial");
 		Category starter = new Category();
-		
 		MdContent md = new MdContent();
-		md.setName("READMD");
+		md.setName("README");
 		md.setContent("Hello world");
-		
 		docmd.getCategories().add(starter);
 		docmd.getList().add(md);
-		
 		impl.save(docmd);
+
+		// Storage path
+		assertThat(path).exists().isDirectory();
+		
+		// Tutorial
+		Path tutorial = Paths.get(String.format("%s/%s", path.toString(), "Tutorial"));
+		assertThat(tutorial).isDirectory();
+		
+		// README.md
+		Path readme = Paths.get( String.format("%s/%s", tutorial.toString(), "README.md") );
+		assertThat(readme)
+			.exists()
+			.isRegularFile()
+			.hasContent("Hello world")
+			;
 	}
 
 }
