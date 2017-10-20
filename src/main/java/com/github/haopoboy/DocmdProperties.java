@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "docmd")
 public class DocmdProperties {
-	public enum StorageType {LOCAL};
+	public enum StorageType {LOCAL}
 	private static final Logger logger = LoggerFactory.getLogger(DocmdProperties.class);
 	private StorageType storageType = StorageType.LOCAL;
 	private String storagePath = "data";
