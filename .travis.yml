@@ -2,5 +2,11 @@ language: java
 jdk:
   - openjdk8
 
+addons:
+  sonarcloud:
+    organization: "haopoboy-github"
+    token:
+      secure: "${SONAR_TOKEN}"
+      
 script:
-  - mvn clean test
+  - mvn clean test sonar:sonar  
