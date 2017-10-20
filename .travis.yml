@@ -8,5 +8,10 @@ addons:
     token:
       secure: "${SONAR_TOKEN}"
       
+cache:
+  directories:
+  - .autoconf
+  - $HOME/.m2
+      
 script:
   - mvn clean test sonar:sonar  
