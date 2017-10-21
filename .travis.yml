@@ -18,6 +18,7 @@ cache:
   - .autoconf
   - $HOME/.m2
   - $HOME/google-cloud-sdk
+  - .$HOME/sonar/cache
   
 services:
   - docker
