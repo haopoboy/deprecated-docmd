@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EnableConfigurationProperties(DocmdProperties.class)
 public class DocmdApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DocmdApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DocmdApplication.class, args);
+    }
 }

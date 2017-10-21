@@ -8,23 +8,23 @@ import org.hibernate.annotations.DynamicUpdate;
 @Entity 
 @DynamicInsert @DynamicUpdate
 public class MdContent extends UuidMappingsuperclass {
-	
-	private String name;
-	private String content;
-	
-	public String getName() {
-		return name;
-	}
+    
+    private String name;
+    private String content;
+    
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

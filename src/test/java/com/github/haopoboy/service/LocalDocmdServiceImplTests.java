@@ -21,49 +21,49 @@ import com.github.haopoboy.entity.MdContent;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class LocalDocmdServiceImplTests {
-	
-	@Autowired private LocalDocmdServiceImpl impl;
-	@Autowired private DocmdProperties properties;
-	
-	@Before
-	public void rmdir() throws IOException {
-		Path path = properties.getStoragePath();
-		FileUtils.deleteDirectory( path.toFile() );
-	}
+    
+    @Autowired private LocalDocmdServiceImpl impl;
+    @Autowired private DocmdProperties properties;
+    
+    @Before
+    public void rmdir() throws IOException {
+        Path path = properties.getStoragePath();
+        FileUtils.deleteDirectory( path.toFile() );
+    }
 
-	@Test
-	public void save() {
-		// Make sure data doesn't exist.
-		Path path = properties.getStoragePath();
-		assertThat(path)
-			.as("Path[%s] must not exist to make sure auto creation.", path)
-			.doesNotExist()
-			;
-		
-		Docmd docmd = new Docmd();
-		docmd.setName("Tutorial");
-		Category starter = new Category();
-		MdContent md = new MdContent();
-		md.setName("README");
-		md.setContent("Hello world");
-		docmd.getCategories().add(starter);
-		docmd.getList().add(md);
-		impl.save(docmd);
+    @Test
+    public void save() {
+        // Make sure data doesn't exist.
+        Path path = properties.getStoragePath();
+        assertThat(path)
+            .as("Path[%s] must not exist to make sure auto creation.", path)
+            .doesNotExist()
+            ;
+        
+        Docmd docmd = new Docmd();
+        docmd.setName("Tutorial");
+        Category starter = new Category();
+        MdContent md = new MdContent();
+        md.setName("README");
+        md.setContent("Hello world");
+        docmd.getCategories().add(starter);
+        docmd.getList().add(md);
+        impl.save(docmd);
 
-		// Storage path
-		assertThat(path).exists().isDirectory();
-		
-		// Tutorial
-		Path tutorial = path.resolve("Tutorial");
-		assertThat(tutorial).isDirectory();
-		
-		// README.md
-		Path readme = tutorial.resolve("README.md");
-		assertThat(readme)
-			.exists()
-			.isRegularFile()
-			.hasContent("Hello world")
-			;
-	}
+        // Storage path
+        assertThat(path).exists().isDirectory();
+        
+        // Tutorial
+        Path tutorial = path.resolve("Tutorial");
+        assertThat(tutorial).isDirectory();
+        
+        // README.md
+        Path readme = tutorial.resolve("README.md");
+        assertThat(readme)
+            .exists()
+            .isRegularFile()
+            .hasContent("Hello world")
+            ;
+    }
 
 }

@@ -9,25 +9,25 @@ import javax.persistence.PrePersist;
 
 @MappedSuperclass
 public class UuidMappingsuperclass {
-	
-	@Id
+    
+    @Id
     @Column(length = 32, updatable = false)
     private String uuid;
-	
-	@PrePersist
-	void prePersist() {
-		uuid = UUID.randomUUID()
-				.toString()
-				.replaceAll("-", "")
-				.toUpperCase()
-				;
-	}
+    
+    @PrePersist
+    void prePersist() {
+        uuid = UUID.randomUUID()
+                .toString()
+                .replaceAll("-", "")
+                .toUpperCase()
+                ;
+    }
 
-	public String getUuid() {
-		return uuid;
-	}
+    public String getUuid() {
+        return uuid;
+    }
 
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 }

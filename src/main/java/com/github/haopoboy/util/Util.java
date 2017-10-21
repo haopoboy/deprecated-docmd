@@ -18,69 +18,69 @@ import org.yaml.snakeyaml.representer.Representer;
 
 public class Util {
 
-	static class SkipNullRepresenter extends Representer {
-		@Override
-		protected NodeTuple representJavaBeanProperty(Object javaBean, Property property, Object propertyValue, Tag customTag) {
-			// if value of property is null, ignore it.
-			if (propertyValue == null) {
-				return null;
-			}  
-			else {
-				return super.representJavaBeanProperty(javaBean, property, propertyValue, customTag);
-			}
-		}
-	}
+    static class SkipNullRepresenter extends Representer {
+        @Override
+        protected NodeTuple representJavaBeanProperty(Object javaBean, Property property, Object propertyValue, Tag customTag) {
+            // if value of property is null, ignore it.
+            if (propertyValue == null) {
+                return null;
+            }  
+            else {
+                return super.representJavaBeanProperty(javaBean, property, propertyValue, customTag);
+            }
+        }
+    }
 
-	static class CustomRepresenter extends Representer {
-		
-		/**
-		 * Override to skip type print.
-		 */
-		@Override
-	    protected MappingNode representJavaBean(Set<Property> properties, Object javaBean) {
-	        if (!classTags.containsKey( javaBean.getClass()) ) {
-	        	addClassTag( javaBean.getClass(), Tag.MAP );
-	        }
+    static class CustomRepresenter extends Representer {
+        
+        /**
+         * Override to skip type print.
+         */
+        @Override
+        protected MappingNode representJavaBean(Set<Property> properties, Object javaBean) {
+            if (!classTags.containsKey( javaBean.getClass()) ) {
+                addClassTag( javaBean.getClass(), Tag.MAP );
+            }
 
-	        return super.representJavaBean(properties, javaBean);
-	    }
-		
-		/**
-		 * Override to skip empty.
-		 */
-		@Override
-		protected NodeTuple representJavaBeanProperty(Object javaBean, Property property,
-				Object propertyValue, Tag customTag) {
-			NodeTuple tuple = super.representJavaBeanProperty(javaBean, property, propertyValue,
-					customTag);
-			Node valueNode = tuple.getValueNode();
-			if ( Tag.NULL.equals(valueNode.getTag()) ) {
-				return null;
-			}
-			if (valueNode instanceof CollectionNode) {
-				if ( Tag.SEQ.equals(valueNode.getTag()) ) {
-					SequenceNode seq = (SequenceNode) valueNode;
-					if ( seq.getValue().isEmpty() ) {
-						return null;
-					}
-				}
-				if ( Tag.MAP.equals(valueNode.getTag()) ) {
-					MappingNode seq = (MappingNode) valueNode;
-					if ( seq.getValue().isEmpty() ) {
-						return null;
-					}
-				}
-			}
-			return tuple;
-		}
-	}
+            return super.representJavaBean(properties, javaBean);
+        }
+        
+        /**
+         * Override to skip empty.
+         */
+        @Override
+        protected NodeTuple representJavaBeanProperty(Object javaBean, Property property,
+                Object propertyValue, Tag customTag) {
+            NodeTuple tuple = super.representJavaBeanProperty(javaBean, property, propertyValue,
+                    customTag);
+            Node valueNode = tuple.getValueNode();
+            if ( Tag.NULL.equals(valueNode.getTag()) ) {
+                return null;
+            }
+            if (valueNode instanceof CollectionNode) {
+                if ( Tag.SEQ.equals(valueNode.getTag()) ) {
+                    SequenceNode seq = (SequenceNode) valueNode;
+                    if ( seq.getValue().isEmpty() ) {
+                        return null;
+                    }
+                }
+                if ( Tag.MAP.equals(valueNode.getTag()) ) {
+                    MappingNode seq = (MappingNode) valueNode;
+                    if ( seq.getValue().isEmpty() ) {
+                        return null;
+                    }
+                }
+            }
+            return tuple;
+        }
+    }
 
-	Util() {}
+    Util() {}
 
-	public static Yaml createDefaultYaml() {
-		Representer representer = new CustomRepresenter();
-		DumperOptions options = new DumperOptions();
-		options.setDefaultFlowStyle(FlowStyle.BLOCK);
-		return new Yaml( new SafeConstructor(), representer, options );
-	}
+    public static Yaml createDefaultYaml() {
+        Representer representer = new CustomRepresenter();
+        DumperOptions options = new DumperOptions();
+        options.setDefaultFlowStyle(FlowStyle.BLOCK);
+        return new Yaml( new SafeConstructor(), representer, options );
+    }
 }
