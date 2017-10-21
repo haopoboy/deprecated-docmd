@@ -1,6 +1,11 @@
 language: java
 jdk:
   - openjdk8
+  
+env:
+  global:
+    - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
+    - PROJECT_NAME=docmd
 
 addons:
   sonarcloud:
