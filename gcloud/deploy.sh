@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-mv $(ls -t *.jar | head -n 1) app.jar
+mv $(ls -t target/*.jar | head -n 1) target/app.jar
 docker build -t "$DOCKER_USERNAME/$PROJECT_NAME" -t "gcr.io/$GCLOUD_PROJECT_ID/$PROJECT_NAME" .;
 
 if [ "$TRAVIS_BRANCH" == "master" ]; then
