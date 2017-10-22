@@ -6,7 +6,6 @@ env:
   global:
     - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
     - PROJECT_NAME=docmd
-    - GCLOUD_PROJECT_ID=lofty-reserve-109616
 
 addons:
   sonarcloud:
