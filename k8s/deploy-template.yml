@@ -1,0 +1,44 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: docmd
+spec:
+  selector:
+    matchLabels:
+      app: docmd
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: docmd
+    spec:
+      containers:
+      - name: docmd
+        image: haopoboy/docmd
+        ports:
+        - containerPort: 8080
+        
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: docmd
+spec:
+  selector:
+    app: docmd
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+    
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: docmd-ingress
+spec:
+  backend:
+    serviceName: docmd
+    servicePort: 80
