@@ -1,4 +1,4 @@
-package com.github.haopoboy.service;
+package com.github.docmd.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,11 +14,11 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.Yaml;
 
-import com.github.haopoboy.DocmdProperties;
-import com.github.haopoboy.entity.Docmd;
-import com.github.haopoboy.entity.MdContent;
-import com.github.haopoboy.repo.DocmdRepository;
-import com.github.haopoboy.util.Util;
+import com.github.docmd.DocmdProperties;
+import com.github.docmd.entity.Docmd;
+import com.github.docmd.entity.DocmdRepository;
+import com.github.docmd.entity.MdContent;
+import com.github.docmd.util.Util;
 
 @Service
 @ConditionalOnProperty(name = "docmd.storage-type", havingValue = "LOCAL", matchIfMissing = true)

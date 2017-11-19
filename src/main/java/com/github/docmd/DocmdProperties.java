@@ -1,4 +1,4 @@
-package com.github.haopoboy;
+package com.github.docmd;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

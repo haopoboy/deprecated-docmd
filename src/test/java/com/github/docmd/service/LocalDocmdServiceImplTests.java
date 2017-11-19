@@ -1,4 +1,4 @@
-package com.github.haopoboy.service;
+package com.github.docmd.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,10 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.github.haopoboy.DocmdProperties;
-import com.github.haopoboy.entity.Category;
-import com.github.haopoboy.entity.Docmd;
-import com.github.haopoboy.entity.MdContent;
+import com.github.docmd.DocmdProperties;
+import com.github.docmd.entity.Category;
+import com.github.docmd.entity.Docmd;
+import com.github.docmd.entity.MdContent;
+import com.github.docmd.service.LocalDocmdServiceImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

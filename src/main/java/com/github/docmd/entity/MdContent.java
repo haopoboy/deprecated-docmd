@@ -1,4 +1,4 @@
-package com.github.haopoboy.entity;
+package com.github.docmd.entity;
 
 import javax.persistence.Entity;
 

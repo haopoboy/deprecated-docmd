@@ -1,4 +1,4 @@
-package com.github.haopoboy;
+package com.github.docmd;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
