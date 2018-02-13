@@ -10,4 +10,4 @@ import { MatButtonModule, MatToolbarModule, MatSidenavModule, MatCardModule } fr
     MatCardModule
   ]
 })
-export class MaterialModule { }
+export class AppMaterialModule { }
