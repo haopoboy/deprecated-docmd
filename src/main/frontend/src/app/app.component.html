@@ -1,0 +1,19 @@
+<mat-sidenav-container fullscreen>
+
+  <mat-sidenav #sidenav>
+      <mat-toolbar color="primary">Side nav</mat-toolbar>
+    Hello guys
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button mat-icon-button class="app-menu-button" (click)="sidenav.toggle()">
+          <i class="material-icons">menu</i>
+        </button>
+        <span class="title">Docmd</span>
+      </mat-toolbar>
+
+      <mat-card>Hello</mat-card>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
