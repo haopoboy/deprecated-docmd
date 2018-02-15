@@ -1,19 +1,19 @@
-<mat-sidenav-container fullscreen>
+<td-layout>
 
-  <mat-sidenav #sidenav>
-      <mat-toolbar color="primary">Side nav</mat-toolbar>
-    Hello guys
-  </mat-sidenav>
+  <td-navigation-drawer flex sidenavTitle="Docmd" name="Haopo" email="haopoboy@docmd">
+  </td-navigation-drawer>
 
-  <mat-sidenav-content>
-      <mat-toolbar color="primary">
-        <button mat-icon-button class="app-menu-button" (click)="sidenav.toggle()">
-          <i class="material-icons">menu</i>
-        </button>
-        <span class="title">Docmd</span>
-      </mat-toolbar>
+  <td-layout-nav>
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <button mat-icon-button td-menu-button tdLayoutToggle>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span [routerLink]="['/']" class="cursor-pointer">Docmd</span>
+    </div>
+  </td-layout-nav>
 
-      <mat-card>Hello</mat-card>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+</td-layout>
+<a mat-fab matTooltip="New document" matTooltipPosition="before" color="accent" class="mat-fab-position-bottom-right z-3">
+	<mat-icon>add</mat-icon>
+</a>
+<router-outlet></router-outlet>
