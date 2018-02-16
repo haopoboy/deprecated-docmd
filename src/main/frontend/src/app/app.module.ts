@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { AppCovalentModule } from './app.covalent.module';
 
+import {DocmdComponentModule} from './component/component.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AppCovalentModule } from './app.covalent.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    AppCovalentModule
+    AppCovalentModule,
+    DocmdComponentModule
   ],
   bootstrap: [AppComponent]
 })

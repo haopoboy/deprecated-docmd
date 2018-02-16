@@ -1,4 +1,4 @@
-<td-layout>
+<td-layout class="theme-light">
 
   <td-navigation-drawer flex sidenavTitle="Docmd" name="Haopo" email="haopoboy@docmd">
   </td-navigation-drawer>
@@ -10,10 +10,37 @@
       </button>
       <span [routerLink]="['/']" class="cursor-pointer">Docmd</span>
     </div>
+
+    <mat-accordion>
+      <docmd-expansion></docmd-expansion>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Personal data
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your name and age
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Personal data
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your name and age
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </mat-accordion>
+
   </td-layout-nav>
+
 
 </td-layout>
 <a mat-fab matTooltip="New document" matTooltipPosition="before" color="accent" class="mat-fab-position-bottom-right z-3">
-	<mat-icon>add</mat-icon>
+  <mat-icon>add</mat-icon>
 </a>
 <router-outlet></router-outlet>
