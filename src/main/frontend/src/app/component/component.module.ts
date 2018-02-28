@@ -1,20 +1,34 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { MatExpansionModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
+import { MatExpansionModule, MatInputModule, MatIconModule, MatButtonModule, MatCardModule, MatDividerModule, MatTooltipModule, MatListModule } from '@angular/material';
 import { CovalentTextEditorModule } from '@covalent/text-editor';
-import { DocmdExpansionComponent } from './docmd-expansion/docmd-expansion.component'
+import { DocmdAccordionComponent } from './docmd-accordion/docmd-accordion.component';
+import { CovalentLayoutModule, CovalentSearchModule } from '@covalent/core';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    DocmdExpansionComponent
+    DocmdAccordionComponent
   ],
   imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
     MatExpansionModule,
-    CovalentTextEditorModule
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatCardModule,
+    MatTooltipModule,
+    CovalentTextEditorModule,
+    CovalentLayoutModule,
+    CovalentSearchModule
   ],
   exports: [
-    DocmdExpansionComponent
+    DocmdAccordionComponent
   ]
 })
-export class DocmdComponentModule { }
+export class DocmdComponentModule {
+}

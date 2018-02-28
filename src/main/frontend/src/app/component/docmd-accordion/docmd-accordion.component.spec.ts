@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DocmdExpansionComponent } from './docmd-expansion.component';
+import { DocmdAccordionComponent } from './docmd-accordion.component';
 
-describe('DocmdExpansionComponent', () => {
-  let component: DocmdExpansionComponent;
-  let fixture: ComponentFixture<DocmdExpansionComponent>;
+describe('DocmdAccordionComponent', () => {
+  let component: DocmdAccordionComponent;
+  let fixture: ComponentFixture<DocmdAccordionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DocmdExpansionComponent ]
+      declarations: [ DocmdAccordionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DocmdExpansionComponent);
+    fixture = TestBed.createComponent(DocmdAccordionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

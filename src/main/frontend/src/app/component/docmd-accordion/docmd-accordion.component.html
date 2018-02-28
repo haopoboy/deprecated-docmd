@@ -1,0 +1,34 @@
+<td-layout-card-over>
+  <div layout="row">
+    <mat-card-title>Document</mat-card-title>
+    <td-search-box flex placeholder="Search somehting here" alwaysVisible="true" [(ngModel)]="searchInputTerm"></td-search-box>
+  </div>
+  <mat-card-subtitle>Write any time</mat-card-subtitle>
+  <mat-divider></mat-divider>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let row of docmds; let $index = index;">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{$index+1}} {{row.ownerName}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{row.content}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <td-text-editor #textEditor (change)="contentChangeEvent($event, row, textEditor.value)"></td-text-editor>
+
+      <mat-divider></mat-divider>
+      <div layout="row">
+        <span flex></span>
+        <button mat-icon-button matTooltip="Delete" (click)="deleteDocumentEvent($event, row)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</td-layout-card-over>
+
+<a mat-fab matTooltip="New document" matTooltipPosition="before" (click)="newDocumentEvent($event)" color="accent" class="mat-fab-position-bottom-right z-3">
+  <mat-icon>add</mat-icon>
+</a>
